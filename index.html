@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Operasional Armada BAg</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A3E91',
+            accent: '#2752B3',
+            'bg-main': '#fdfbf8',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          borderRadius: {
+            '3xl': '1.5rem',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-bg-main font-sans text-gray-800 h-screen overflow-x-hidden">
+
+  <div id="loading-overlay" class="fixed inset-0 gradient-bg flex items-center justify-center z-50">
+    <div class="text-white text-lg sm:text-xl font-semibold text-center animate-pulse">
+      <svg class="animate-spin h-10 w-10 mx-auto mb-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.3 0 0 5.3 0 12h4zm2 5.3A8 8 0 014 12H0c0 3 1.1 5.8 3 7.9l3-2.6z" />
+      </svg>
+      Loading data...
+    </div>
+  </div>
+
+  <div id="dashboard-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 hidden">
+
+    <header class="text-center max-w-3xl mx-auto mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        Operasional Armada BAg
+      </h1>
+      <p class="mt-1 text-gray-600 text-base font-semibold tracking-wide">
+        PT Pelayaran Bahtera AdhiGuna
+      </p>
+      <div id="auth-status" class="mt-2 text-xs text-gray-500 tracking-wider">
+        Auth Status: Connecting...
+      </div>
+    </header>
+
+    <section id="kpi-container"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 mb-8 lg:mb-12">
+
+      <div id="kpi-total-ships" data-type="all"
+        class="card-modern p-4 lg:p-6 shadow-lg shadow-primary/10 rounded-3xl text-center cursor-pointer transform hover:scale-105 transition-transform duration-300 border border-transparent hover:border-accent">
+        <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">Total Kapal</p>
+        <p id="total-ships-kpi" class="text-3xl lg:text-4xl font-extrabold text-primary">0</p>
+      </div>
+
+      <div id="kpi-total-tugboats" data-type="tugboat"
+        class="card-modern p-4 lg:p-6 shadow-lg shadow-primary/10 rounded-3xl text-center cursor-pointer transform hover:scale-105 transition-transform duration-300 border border-transparent hover:border-accent">
+        <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">Total Tugboat</p>
+        <p id="total-tugboats-kpi" class="text-3xl lg:text-4xl font-extrabold text-primary">0</p>
+      </div>
+
+      <div id="kpi-total-vessels" data-type="vessel"
+        class="card-modern p-4 lg:p-6 shadow-lg shadow-primary/10 rounded-3xl text-center cursor-pointer transform hover:scale-105 transition-transform duration-300 border border-transparent hover:border-accent">
+        <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">Total Vessel</p>
+        <p id="total-vessels-kpi" class="text-3xl lg:text-4xl font-extrabold text-primary">0</p>
+      </div>
+
+      <div id="kpi-total-agents" data-type="agent"
+        class="card-modern p-4 lg:p-6 shadow-lg shadow-primary/10 rounded-3xl text-center cursor-pointer transform hover:scale-105 transition-transform duration-300 border border-transparent hover:border-accent">
+        <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">Total Agen</p>
+        <p id="total-agents-kpi" class="text-3xl lg:text-4xl font-extrabold text-primary">0</p>
+      </div>
+
+      <div id="kpi-total-routes" data-type="route"
+        class="card-modern p-4 lg:p-6 shadow-lg shadow-primary/10 rounded-3xl text-center cursor-pointer transform hover:scale-105 transition-transform duration-300 border border-transparent hover:border-accent">
+        <p class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">Total Rute</p>
+        <p id="total-routes-kpi" class="text-3xl lg:text-4xl font-extrabold text-primary">0</p>
+      </div>
+
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+      <div class="card-modern p-6 lg:p-8 shadow-lg rounded-3xl flex flex-col h-full shadow-primary/10">
+        <h2 class="text-xl font-bold text-primary mb-6 border-b pb-2">
+          Top 5 Muatan Terbanyak (Ton) 🚢
+        </h2>
+        <div class="flex-grow relative min-h-[320px] h-full">
+          <canvas id="loadChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card-modern p-6 lg:p-8 shadow-lg rounded-3xl flex flex-col h-full shadow-primary/10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+          <h2 class="text-xl font-bold text-primary mb-2 md:mb-0">
+            Armada Aktif (<span id="total-ships-count">0</span>)
+          </h2>
+
+          <div class="relative w-full md:w-72 lg:w-80">
+            <input type="text" id="ship-search" placeholder="Cari kapal atau lokasi..."
+              class="search-input w-full rounded-full pl-10 pr-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-40 transition" />
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35M11 6a5 5 0 100 10 5 5 0 000-10z" />
+            </svg>
+          </div>
+        </div>
+
+        <div id="ship-list"
+          class="ship-list-container overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow max-h-[50vh] lg:max-h-[60vh]">
+
+          <div id="ship-list-placeholder" class="col-span-full py-8 text-center text-gray-400">
+            Memuat data kapal...
+          </div>
+
+          </div>
+      </div>
+
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-6 lg:mt-8">
+
+      <div class="card-modern p-6 lg:p-8 shadow-lg rounded-3xl shadow-primary/10">
+        <h2 class="text-xl font-bold text-primary mb-6 border-b pb-2">Top 5 Agen Teratas 👤</h2>
+        <div class="relative min-h-[320px] h-full">
+          <canvas id="agentChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card-modern p-6 lg:p-8 shadow-lg rounded-3xl shadow-primary/10">
+        <h2 class="text-xl font-bold text-primary mb-6 border-b pb-2">Top 5 Rute Terbanyak 🗺️</h2>
+        <div class="relative min-h-[320px] h-full">
+          <canvas id="routeChart"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div id="ship-names-modal"
+    class="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50 hidden transition-opacity duration-300 opacity-0"
+    onclick="closeModal()">
+
+    <div class="card-modern w-full max-w-lg p-6 rounded-3xl shadow-2xl m-4 cursor-default"
+      onclick="event.stopPropagation()">
+
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 id="modal-title" class="text-xl font-bold text-primary">Daftar Nama</h3>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-primary transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="max-h-96 overflow-y-auto pr-2">
+        <ul id="modal-ship-list" class="space-y-2 text-sm text-gray-700"></ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="active-ship-detail-modal"
+    class="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50 hidden transition-opacity duration-300 opacity-0"
+    onclick="closeDetailModal()">
+
+    <div class="card-modern w-full max-w-xl p-6 rounded-3xl shadow-2xl m-4 cursor-default"
+      onclick="event.stopPropagation()">
+
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 id="detail-modal-title" class="text-xl font-bold text-primary">Detail Kapal Aktif</h3>
+        <button onclick="closeDetailModal()" class="text-gray-400 hover:text-primary transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div id="detail-modal-content" class="space-y-4 text-gray-700">
+        <p class="font-bold text-lg text-primary" id="detail-ship-name"></p>
+        <div class="grid grid-cols-2 gap-y-2 text-sm">
+          <div><strong class="text-gray-600">Jenis Kapal:</strong></div>
+          <div id="detail-ship-type"></div>
+
+          <div><strong class="text-gray-600">Status:</strong></div>
+          <div id="detail-ship-status"></div>
+
+          <div><strong class="text-gray-600">Rute:</strong></div>
+          <div id="detail-ship-route"></div>
+
+          <div><strong class="text-gray-600">Muatan (Ton):</strong></div>
+          <div id="detail-ship-load"></div>
+
+          <div><strong class="text-gray-600">Pelabuhan Selanjutnya (Next Port):</strong></div>
+          <div id="detail-ship-next-port" class="font-semibold text-accent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

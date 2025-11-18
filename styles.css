@@ -1,0 +1,83 @@
+/* ============================
+   BASE
+============================ */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Gradient background (blue scheme) */
+.gradient-bg {
+  background: linear-gradient(135deg, #1A3E91, #2752B3);
+}
+
+/* ============================
+   CARD MODERN COMPONENT
+============================ */
+.card-modern {
+  background: #fff;
+  border-radius: 1.5rem;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-modern:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================
+   INPUT FIELD
+============================ */
+.search-input {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: 
+    border-color 0.2s ease, 
+    background-color 0.2s ease, 
+    box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #1A3E91;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(26, 62, 145, 0.2);
+}
+
+/* ============================
+   SCROLLBAR
+============================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ============================
+   MODAL TRANSITION
+============================ */
+#ship-names-modal {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* ============================
+   UTILITIES
+============================ */
+.text-primary {
+  color: #1A3E91;
+}
+
+.bg-primary {
+  background-color: #1A3E91;
+}
