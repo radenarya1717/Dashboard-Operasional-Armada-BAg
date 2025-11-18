@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const LOAD_DATA = [
         { ship: 'MV. Adhiguna Tarahan', load: 10200, color: '#b91c1c' }, // Cargo 10.200 MT
         { ship: 'MV. Zalecha Baruna', load: 55000, color: '#dc2626' }, // Cargo 55.000 MT
-        { ship: 'MV Rama Baruna', load: 50000, color: '#f87171' }, // Cargo 50.000 MT
+        { ship: 'MV Rasuna Baruna', load: 50000, color: '#f87171' }, // Cargo 50.000 MT
         { ship: 'MV Malahayati Baruna', load: 52349, color: '#fca5a5' }, // Cargo 52.349 MT
         { ship: 'MV Latifah Baruna', load: 43508, color: '#fecaca' }, // Cargo 43.508 MT
     ];
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'PT. Adhi Guna Putera', count: 10 }, 
         { name: 'PT. Riandy Fiesta Samudeta', count: 2 },
         { name: 'PT. IDT Trans Agency', count: 1 },
-        { name: 'PT. Trans Samudera Armada', count: 1 },
+        { name: 'PT. Samudera Makmur Agency', count: 1 },
     ];
 
 
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'MV Jayanti Baruna', type: 'Vessel', status: 'Sailing', location: 'Gresik (Dalam Pelayaran)', load: 0, statusColor: 'blue-700', route: 'Gresik - Lombok', nextPort: 'Lombok (Discharge)' },
         { name: 'MV. Zalecha Baruna', type: 'Vessel', status: 'Discharge', location: 'Manokwari', load: 32298, statusColor: 'red-700', route: 'Taboneo - Manokwari', nextPort: 'Taboneo (Loading)' },
         { name: 'MV Rasuna Baruna', type: 'Vessel', status: 'Discharge', location: 'Suralaya 1-7', load: 42109, statusColor: 'red-700', route: 'Tarahan - Suralaya 1-7', nextPort: 'Tarahan (Loading)' },
-        { name: 'MV Malahayali Baruna', type: 'Vessel', status: 'Discharge', location: 'Cilacap', load: 33509, statusColor: 'red-700', route: 'Bengkulu - Cilacap', nextPort: 'Bengkulu (Loading)' },
+        { name: 'MV Malahayati Baruna', type: 'Vessel', status: 'Discharge', location: 'Cilacap', load: 33509, statusColor: 'red-700', route: 'Bengkulu - Cilacap', nextPort: 'Bengkulu (Loading)' },
         { name: 'MV Latifah Baruna', type: 'Vessel', status: 'Discharge', location: 'Paiton', load: 40597, statusColor: 'red-700', route: 'Tanjung Bara - Paiton PEC', nextPort: 'Tanjung Bara (Loading)' },
         { name: 'MV. Lumoso Raya', type: 'Vessel', status: 'Anchor', location: 'Tanjung Merpati', load: 50000, statusColor: 'green-700', route: 'Muara Jawa - Tanjung Merpati', nextPort: 'Tanjung Merpati (Discharge)' },
         { name: 'MV. Prima Sentosa', type: 'Vessel', status: 'Anchor', location: 'Karang Jamuang (Bunker)', load: 50000, statusColor: 'green-700', route: 'Muara Sampit - Morosi', nextPort: 'Morosi (Discharge)' },
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'TB Nusa XII 2023/BG Cakrawala XVI 2023', type: 'Tugboat/Barge', status: 'Anchor', location: 'Paiton', load: 10011, statusColor: 'green-700', route: 'Tarahan - Paiton 1-2', nextPort: 'Paiton 1-2 (Discharge)' },
         { name: 'TB. AH 2018 BG Cakrawala VI', type: 'Tugboat/Barge', status: 'Anchor', location: 'Labuan', load: 10023, statusColor: 'green-700', route: 'Tarahan - Labuan', nextPort: 'Labuan (Discharge)' },
         { name: 'TB. Pancaran 212/BG PST 213', type: 'Tugboat/Barge', status: 'Sailing', location: 'Paiton (Dalam Pelayaran)', load: 10003, statusColor: 'blue-700', route: 'Tarahan - Paiton', nextPort: 'Paiton (Discharge)' },
-        { name: 'TB. Libert 5/BG Azamara 033', type: 'Tugboat/Barge', status: 'Anchor', location: 'Bunati', load: 0, statusColor: 'green-700', route: 'Bunati - Tanjung Awar-awar', nextPort: 'Tanjung Awar-awar (Discharge)' },
+        { name: 'TB. Liberty 5/BG Azamara 033', type: 'Tugboat/Barge', status: 'Anchor', location: 'Bunati', load: 0, statusColor: 'green-700', route: 'Bunati - Tanjung Awar-awar', nextPort: 'Tanjung Awar-awar (Discharge)' },
         { name: 'TB Liberty 9/BG. Azames 3032', type: 'Tugboat/Barge', status: 'Sailing', location: 'Tarahan (Dalam Pelayaran)', load: 0, statusColor: 'blue-700', route: 'Tarahan - Ombilin', nextPort: 'Ombilin (Discharge)' },
         { name: 'TB Nusa VIII 2022/BG. EVE 088 2019', type: 'Tugboat/Barge', status: 'Sailing', location: 'Samarinda (Dalam Pelayaran)', load: 0, statusColor: 'blue-700', route: 'Muara Pahu - Palu 3', nextPort: 'Palu 3 (Discharge)' },
         { name: 'TB NUSA/BG. ANT 989 2019', type: 'Tugboat/Barge', status: 'Sailing', location: 'Palembang (Dalam Pelayaran)', load: 0, statusColor: 'blue-700', route: 'Palembang - Suralaya Baru', nextPort: 'Suralaya Baru (Discharge)' },
@@ -553,3 +553,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
