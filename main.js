@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Semua kapal dari data master (digunakan hanya untuk KPI modal)
     const TUG_BARGE_MILIK = ['TB SB 2001/BG BP 3001', 'TB. SB 2002/BG. BP 3003', 'TB SB 2003/BG BP 3007', 'TB SB 2004/BG 3008', 'TB SB 2401/BG.3301', 'TB. SB 2402/BG BP 3302', 'TB SB 2201/BG 3004', 'TB SB 2202 BG. BP 3005', 'TB SB. 2203 BG. BP 3006', 'TB. SB. 2204/BP 3303', 'TB SB 2205/BP 3304', 'TB SB. 2206/ 3305', 'TB SB 2207/BP 3308'];
-    const TUG_BARGE_TC = ['TB. Bintang Laut 165/BG Chandra 305', 'TB. Bintang Laut 166/BG Chandra 302', 'TB. Pancaran 813/BG PST 813', 'TB. Pancaran 712/BG. PST 610', 'TB. Pancaran 1312/BG PST 1312', 'TB. Pancaran 512/BG PST 215', 'TB Nusa BG Cakrawala V 2022', 'TB Nusa XIV 2023 BG Cakrawala XVIII 2023', 'TB. BGM 01/BG. Cakrawala 0 2023', 'TB Nusa XII 2023/BG Cakrawala XVI 2023', 'TB. AH 2018/BG Cakrawala VI', 'TB. Pancaran 212/BG. PST 213', 'TB. Liberty 5/BG Azamara 033', 'TB Liberty 9/BG. Azames 3032', 'TB Nusa VIII 2022/BG. EVE 088 2019', 'TB NUSA/BG. ANT 989 2019', 'TB Nusa XIX 2023/BG ANT 98 2019', 'TB Nusa XXI 2023/BG. ASR', 'TB. AH 98 2022/BG. ANT 888 2019', 'TB NUSA VII 2022/BG EVE 999 2019', 'TB NUSA IX 2022/BG PTR', 'TB. BGM 07 2022/BG. EVE 798 2019', 'TB NUSA XXII 2023/BG MKH', 'TB NUSA XXXV 2024/BG. CAKRAWALA XXXV 2024'];
-    const VESSEL_MILIK = ['MV. Adhiguna Tarahan', 'MV. Sartius Baruna', 'MV Acimbi Baruna', 'MV. Kencana Baruna', 'MV Kartika Baruna', 'MV Martha Baruna', 'MV Minds Baruna', 'MV Intan Baruna', 'MV Jayanti Baruna', 'MV. Zalecha Baruna', 'MV Rama Baruna', 'MV Malahayali Baruna', 'MV Latifah Baruna'];
-    const VESSEL_TC = ['MV. Lomoso Raya', 'MV. Prima Sentosa', 'MV Ammar', 'MV. Prama Sejahtera', 'MV AGP Kartini', 'MV. Samudera Sakti III', 'MV. Kartika Samudra', 'MV Karurea Gemilang', 'MV Lumese Pratama', 'MV. Bulk Batavia'];
+    const TUG_BARGE_TC = ['TB. Bintang Laut 165/BG Chandra 305', 'TB. Bintang Laut 166/BG Chandra 302', 'TB. Pancaran 813/BG PST 813', 'TB. Pancaran 712/BG. PST 610', 'TB. Pancaran 1312/BG PST 1312', 'TB. Pancaran 512/BG PST 215', 'TB Nusa BG Cakrawala V 2022', 'TB Nusa XIV 2023 BG Cakrawala XVIII 2023', 'TB. BGM 01/BG. Cakrawala 0 2023', 'TB Nusa XII 2023/BG Cakrawala XVI 2023', 'TB. AH 2018/BG Cakrawala VI', 'TB. Pancaran 212/BG. PST 213', 'TB. Liberty 5/BG Azamara 033', 'TB Liberty 9/BG. Azames 3032', 'TB Nusa VIII 2022/BG. EVE 088 2019', 'TB NUSA/BG. ANT 989 2019', 'TB Nusa XIX 2023/BG ANT 98 2019', 'TB Nusa XXI 2023/BG. ASR', 'TB. AH 98 2022/BG. ANT 888 2019', 'TB NUSA VII 2022/BG EVE 999 2019', 'TB NUSA IX 2022/BG PTR', 'TB. BGM 07 2022/BG. EVE 798 2019', 'TB NUSA XXII 2023/BG MKR', 'TB NUSA XXXV 2024/BG. CAKRAWALA XXXV 2024'];
+    const VESSEL_MILIK = ['MV. Adhiguna Tarahan', 'MV. Sartika Baruna', 'MV Arimbi Baruna', 'MV. Kencana Baruna', 'MV Kartika Baruna', 'MV Martha Baruna', 'MV Meutia Baruna', 'MV Intan Baruna', 'MV Jayanti Baruna', 'MV. Zalecha Baruna', 'MV Rama Baruna', 'MV Malahayali Baruna', 'MV Latifah Baruna'];
+    const VESSEL_TC = ['MV. Lumoso Raya', 'MV. Prima Sentosa', 'MV Ammar', 'MV. Prima Sejahtera', 'MV AGP Kartini', 'MV. Samudera Sakti III', 'MV. Kartika Samudra', 'MV Karunia Gemilang', 'MV Lumoso Pratama', 'MV. Bulk Batavia'];
 
 
     // === KOMPUTASI & HELPER ===
@@ -550,5 +550,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderShipListSim(); // Memanggil fungsi render kapal yang telah diupdate
 
     hideLoadingAndShowDashboard();
+
 
 });
